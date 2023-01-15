@@ -1,0 +1,91 @@
+id: bas_resource
+label: 'BAS Resource'
+label_singular: 'BAS Resource'
+label_plural: 'BAS Resources'
+label_count: '@count BAS Resources'
+base_table: bas_resource
+data_table: bas_resource_field_data
+revision_table: bas_resource_revision
+revision_data_table: bas_resource_field_revision
+translatable: true
+handlers:
+  list_builder: 'Drupal\bas\BASResourceListBuilder'
+  form:
+    add: 'Drupal\bas\Form\BASResourceForm'
+    edit: 'Drupal\bas\Form\BASResourceForm'
+    delete: 'Drupal\bas\Form\BASResourceDeleteForm'
+  access: 'Drupal\bas\BASResourceAccessControlHandler'
+  storage: 'Drupal\Core\Entity\Sql\SqlContentEntityStorage'
+  views_data: 'Drupal\views\EntityViewsData'
+  route_provider:
+    html: 'Drupal\Core\Entity\Routing\AdminHtmlRouteProvider'
+  translation: 'Drupal\content_translation\ContentTranslationHandler'
+  view_builder: 'Drupal\Core\Entity\EntityViewBuilder'
+  views_data: 'Drupal\views\EntityViewsData'
+  views_data_alter: 'Drupal\views\EntityViewsDataAlter'
+  bundle_of: 'bas_resource'
+  links:
+    canonical: '/bas_resource/{bas_resource}'
+    add-form: '/bas_resource/add'
+    edit-form: '/bas_resource/{bas_resource}/edit'
+    delete-form: '/bas_resource/{bas_resource}/delete'
+    collection: '/bas_resource'
+fields:
+  - field.storage.bas_resource.name
+  - field.storage.bas_resource.short_code
+  - field.storage.bas_resource.bookable
+  - field.storage.bas_resource.status
+  - field.storage.bas_resource.type
+  - field.storage.bas_resource.subtype
+  - field.storage.bas_resource.parent
+  - field.storage.bas_resource.weight
+  - field.storage.bas_resource.simultaneous_users
+  - field.storage.bas_resource.buffer_uses
+  - field.storage.bas_resource.manage_availability
+bundles:
+  bas_event:
+    label: 'Event'
+    type: bas_event
+    handlers:
+      form:
+        add: 'Drupal\bas\Form\BasEventForm'
+        edit: 'Drupal\bas\Form\BasEventForm'
+        delete: 'Drupal\bas\Form\BasEventDeleteForm'
+    fields:
+      field.storage.bas_resource.bas_event.datetime: bas_event_datetime
+      field.storage.bas_resource.bas_event.contact: bas_event_contact
+      field.storage.bas_resource.bas_event.requirements: bas_event_requirements
+  bas_physical:
+    label: 'Physical Object'
+    type: bas_physical
+    handlers:
+      form:
+        add: 'Drupal\bas\Form\BasPhysicalForm'
+        edit: 'Drupal\bas\Form\BasPhysicalForm'
+        delete: 'Drupal\bas\Form\BasPhysicalDeleteForm'
+    fields:
+      field.storage.bas_resource.bas_physical.property: bas_physical_property
+      field.storage.bas_resource.bas_physical.requirement: bas_physical_requirement
+  bas_person:
+    label: 'Person'
+    type: bas_person
+    handlers:
+      form:
+        add: 'Drupal\bas\Form\BasPersonForm'
+        edit: 'Drupal\bas\Form\BasPersonForm'
+        delete: 'Drupal\bas\Form\BasPersonDeleteForm'
+    fields:
+      field.storage.bas_resource.bas_person.user_ref: bas_person_user_ref
+      field.storage.bas_resource.bas_person.expertise: bas_person_expertise
+      field.storage.bas_resource.bas_person.id_group: bas_person_id_group
+      field.storage.bas_resource.bas_person.start_date: bas_person_start_date
+  bas_service:
+    label: 'Service'
+    type: bas_service
+    handlers:
+      add: 'Drupal\bas\Form\BasServiceForm'
+      edit: 'Drupal\bas\Service\BasForm'
+      delete: 'Drupal\bas\Form\BasServiceDeleteForm'
+    fields:
+      field.storage.bas_resource.bas_service.audience: bas_service_auidence
+      field.storage.bas_resource.bas_service.outcome: bas_service_outcome
